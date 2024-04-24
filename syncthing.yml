@@ -18,6 +18,14 @@ Resources:
       SubnetId: !ImportValue public-subnet-1-export
       SecurityGroups:
         - !ImportValue securitygroup-export
+  
+  EFSMountTarget2:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EFSFileSystem
+      SubnetId: !ImportValue public-subnet-2-export
+      SecurityGroups:
+        - !ImportValue securitygroup-export
 
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -33,6 +41,7 @@ Resources:
       Family: "SyncthingTask"
       NetworkMode: awsvpc
       ExecutionRoleArn: !GetAtt ECSExecutionRole.Arn
+      TaskRoleArn: !GetAtt ECSTaskRole.Arn
       RequiresCompatibilities:
         - FARGATE
       Cpu: .25 vCPU
@@ -75,6 +84,7 @@ Resources:
       TaskDefinition: !Ref SyncthingTaskDefinition
       LaunchType: FARGATE
       DesiredCount: 1
+      EnableExecuteCommand: True
       NetworkConfiguration:
         AwsvpcConfiguration:
           Subnets:
@@ -85,6 +95,10 @@ Resources:
       DeploymentConfiguration:
         MaximumPercent: 100
         MinimumHealthyPercent: 0
+      LoadBalancers:
+        - ContainerName: "SyncthingContainer"
+          ContainerPort: 8384  # Match the port for Syncthing
+          TargetGroupArn: !ImportValue elb-targetgroup-export
 
   ECSExecutionRole:
     Type: AWS::IAM::Role
@@ -120,6 +134,10 @@ Resources:
               - Effect: Allow
                 Action:
                   - efs:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - elb:*
                 Resource: "*"
 
   ECSTaskRole:

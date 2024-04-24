@@ -1,0 +1,50 @@
+Resources:
+  # Existing resources
+
+  # Create an Application Load Balancer (ALB)
+  ApplicationLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: "SyncthingALB"
+      Subnets:
+        - !ImportValue public-subnet-1-export  # Adjust according to your setup
+        - !ImportValue public-subnet-2-export  # Assuming you have more than one public subnet
+      SecurityGroups:
+        - !ImportValue securitygroup-export  # Adjust accordingly
+      Scheme: internet-facing  # For public access
+      LoadBalancerAttributes:
+        - Key: idle_timeout.timeout_seconds
+          Value: "60"  # Example timeout value, adjust as needed
+
+  # Create a Target Group for ECS Service
+  ECSTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: "SyncthingTargetGroup"
+      Port: 8384  # The port for your Syncthing application
+      Protocol: HTTP
+      VpcId: !ImportValue vpc-id-export  # Adjust to your VPC
+      TargetType: ip  # Use IP targeting for Fargate
+      HealthCheckIntervalSeconds: 30  # Health check interval
+      HealthCheckProtocol: HTTP
+      HealthCheckPath: /  # Health check endpoint
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      UnhealthyThresholdCount: 2
+
+  # Create a Listener to route traffic from the ALB to the Target Group
+  ALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref ApplicationLoadBalancer
+      Port: 80  # HTTP port
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref ECSTargetGroup
+
+Outputs:
+  PublicSubnet1:
+    Value: !Ref ECSTargetGroup
+    Export:
+      Name: "elb-targetgroup-export"
