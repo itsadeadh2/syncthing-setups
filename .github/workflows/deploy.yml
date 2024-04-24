@@ -42,6 +42,6 @@ jobs:
     - name: Deploy Syncthing      
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: syncthing-network
+        name: syncthing-ecs
         template: templates/syncthing.yml
         parameter-overrides: "Revision=${{ github.run_id }}"
