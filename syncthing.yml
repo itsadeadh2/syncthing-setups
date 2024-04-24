@@ -170,6 +170,8 @@ Resources:
                   - ecr:*
                   - logs:*
                   - ec2:*
+                  - elasticfilesystem:DescribeMountTargets
+                  - ec2:DescribeAvailabilityZones
                 Resource: "*"
 
   ECSTaskRole:
