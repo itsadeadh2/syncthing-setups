@@ -117,6 +117,14 @@ Resources:
               SourceVolume: "SyncthingDataVolume"
             - ContainerPath: "/config"
               SourceVolume: "SyncthingConfigVolume"
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              mode: non-blocking
+              max-buffer-size: 25m
+              awslogs-group: !Ref TaskLogGroup
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: ecs
       Volumes:
         - Name: "SyncthingDataVolume"
           EFSVolumeConfiguration:
@@ -185,3 +193,12 @@ Resources:
               Service:
                 - ecs-tasks.amazonaws.com
             Action: sts:AssumeRole
+
+  TaskLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/ecs/${AWS::StackName}"
+      RetentionInDays: 3
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}"
