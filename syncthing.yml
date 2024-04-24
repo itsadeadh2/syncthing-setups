@@ -23,6 +23,9 @@ Resources:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: "SyncthingCluster"
+      Configuration:
+        ExecuteCommandConfiguration:
+          Logging: 'DEFAULT'
 
   SyncthingTaskDefinition:
     Type: AWS::ECS::TaskDefinition
@@ -94,6 +97,9 @@ Resources:
               Service:
                 - ecs-tasks.amazonaws.com
             Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
       Policies:
         - PolicyName: "AmazonECSTaskExecutionRolePolicy"
           PolicyDocument:
