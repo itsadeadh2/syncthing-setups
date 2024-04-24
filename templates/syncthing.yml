@@ -1,6 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: "AWS CloudFormation Template to deploy Syncthing on Fargate with EFS for persistent storage"
 
+Parameters:
+  Revision:
+    Type: String
+    Description: 'Name of an existing EC2 KeyPair for SSH access'
+    Default: '0'
+
 Resources:
 
   EFSFileSystem:
@@ -47,7 +53,7 @@ Resources:
       Cpu: .25 vCPU
       Memory: 0.5 GB
       ContainerDefinitions:
-        - Name: "SyncthingContainer"
+        - Name: !Sub "syncthing-${Revision}"
           Image: "linuxserver/syncthing:1.27.6"
           Essential: true
           PortMappings:
