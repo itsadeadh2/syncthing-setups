@@ -31,17 +31,17 @@ jobs:
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-network
-        template: templates/network.yaml
+        template: templates/network.yml
 
     - name: Deploy ELB
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-elb
-        template: templates/elb.yaml
+        template: templates/elb.yml
     
     - name: Deploy Syncthing      
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-network
-        template: templates/syncthing.yaml
+        template: templates/syncthing.yml
         parameter-overrides: "Revision=${{ github.run_id }}"
