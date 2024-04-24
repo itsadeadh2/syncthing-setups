@@ -102,7 +102,7 @@ Resources:
         MaximumPercent: 100
         MinimumHealthyPercent: 0
       LoadBalancers:
-        - ContainerName: "SyncthingContainer"
+        - ContainerName: "syncthing-${Revision}"
           ContainerPort: 8384  # Match the port for Syncthing
           TargetGroupArn: !ImportValue elb-targetgroup-export
 
