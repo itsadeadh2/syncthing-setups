@@ -29,6 +29,7 @@ Resources:
     Properties:
       Family: "SyncthingTask"
       NetworkMode: awsvpc
+      ExecutionRoleArn: !GetAtt ECSExecutionRole.Arn
       RequiresCompatibilities:
         - FARGATE
       Cpu: .25 vCPU
@@ -40,11 +41,11 @@ Resources:
           PortMappings:
             - ContainerPort: 8384
             - ContainerPort: 22000
-          # MountPoints:
-          #   - ContainerPath: "/sync"
-          #     SourceVolume: "SyncthingDataVolume"
-          #   - ContainerPath: "/config"
-          #     SourceVolume: "SyncthingConfigVolume"
+          MountPoints:
+            - ContainerPath: "/sync"
+              SourceVolume: "SyncthingDataVolume"
+            - ContainerPath: "/config"
+              SourceVolume: "SyncthingConfigVolume"
           LogConfiguration:
             LogDriver: awslogs
             Options:
@@ -53,17 +54,15 @@ Resources:
               awslogs-group: !Ref TaskLogGroup
               awslogs-region: !Ref "AWS::Region"
               awslogs-stream-prefix: ecs
-      # Volumes:
-      #   - Name: "SyncthingDataVolume"
-      #     EFSVolumeConfiguration:
-      #       FilesystemId: !Ref EFSFileSystem
-      #       RootDirectory: /sync
-      #       TransitEncryption: ENABLED
-      #   - Name: "SyncthingConfigVolume"
-      #     EFSVolumeConfiguration:
-      #       FilesystemId: !Ref EFSFileSystem
-      #       TransitEncryption: ENABLED
-      #       RootDirectory: /config
+      Volumes:
+        - Name: "SyncthingDataVolume"
+          EFSVolumeConfiguration:
+            FilesystemId: !Ref EFSFileSystem
+            TransitEncryption: ENABLED
+        - Name: "SyncthingConfigVolume"
+          EFSVolumeConfiguration:
+            FilesystemId: !Ref EFSFileSystem
+            TransitEncryption: ENABLED
 
   ECSService:
     Type: AWS::ECS::Service
@@ -105,15 +104,17 @@ Resources:
                   - ecs:*
                   - ecr:*
                   - logs:*
-                  - ec2:*
-                  - elasticfilesystem:DescribeMountTargets
-                  - ec2:DescribeAvailabilityZones
+                  - ec2:*                  
                 Resource: "*"
               - Effect: Allow
                 Action:
                   - 'logs:CreateLogStream'
                   - 'logs:PutLogEvents'
                 Resource: '*'
+              - Effect: Allow
+                Action:
+                  - efs:*
+                Resource: "*"
 
   ECSTaskRole:
     Type: AWS::IAM::Role
