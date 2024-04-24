@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy Syncthing
     runs-on: ubuntu-latest
     environment: production
 
@@ -32,12 +32,14 @@ jobs:
       with:
         name: syncthing-network
         template: templates/network.yml
+        no-fail-on-empty-changeset: 1
 
     - name: Deploy ELB
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-elb
         template: templates/elb.yml
+        no-fail-on-empty-changeset: 1
     
     - name: Deploy Syncthing      
       uses: aws-actions/aws-cloudformation-github-deploy@v1
@@ -45,3 +47,4 @@ jobs:
         name: syncthing-ecs
         template: templates/syncthing.yml
         parameter-overrides: "Revision=${{ github.run_id }}"
+        no-fail-on-empty-changeset: 1
