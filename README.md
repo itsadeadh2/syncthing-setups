@@ -8,10 +8,10 @@ Collection of [syncthing](https://syncthing.net/) setups that I use to sync my s
 - I do not **maintain** or **own** any of the actual projects in here. This is just a repo with some instructions and placeholder configurations that I figured out myself in order to get a syncthing setup that works for my needs.
 
 ## Setups
-- []()
+- [AWS](setups/aws/README.md)
 - [ArkOs](setups/arkos/README.md)
-- []()
-- []()
+- [Batocera](setups/batocera/README.md)
+- [EmuELEC](setups/emuelec/README.md)
 - [Docker (locally)](https://hub.docker.com/r/linuxserver/syncthing)
 
 ## Credits
