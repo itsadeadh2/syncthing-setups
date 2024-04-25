@@ -16,20 +16,6 @@ Resources:
       Encrypted: true
       LifecyclePolicies:
         - TransitionToIA: AFTER_30_DAYS
-  
-  EFSConfigAccessPoint:
-    Type: 'AWS::EFS::AccessPoint'
-    Properties:
-      FileSystemId: !Ref EFSFileSystem
-      RootDirectory:
-        Path: "/sync/config"
-
-  EFSDataAccessPoint:
-    Type: 'AWS::EFS::AccessPoint'
-    Properties:
-      FileSystemId: !Ref EFSFileSystem
-      RootDirectory:
-        Path: "/sync/data"
 
   EFSMountTarget1:
     Type: AWS::EFS::MountTarget
@@ -74,8 +60,6 @@ Resources:
             - ContainerPort: 8384
             - ContainerPort: 22000
           MountPoints:
-            - ContainerPath: "/sync"
-              SourceVolume: "SyncthingDataVolume"
             - ContainerPath: "/config"
               SourceVolume: "SyncthingConfigVolume"
           LogConfiguration:
@@ -87,19 +71,10 @@ Resources:
               awslogs-region: !Ref "AWS::Region"
               awslogs-stream-prefix: ecs
       Volumes:
-        - Name: "SyncthingDataVolume"
-          EFSVolumeConfiguration:
-            FilesystemId: !Ref EFSFileSystem
-            TransitEncryption: ENABLED
-            AuthorizationConfig:
-              AccessPointId: !Ref EFSDataAccessPoint
-
         - Name: "SyncthingConfigVolume"
           EFSVolumeConfiguration:
             FilesystemId: !Ref EFSFileSystem
             TransitEncryption: ENABLED
-            AuthorizationConfig:
-              AccessPointId: !Ref EFSConfigAccessPoint
 
   ECSService:
     Type: AWS::ECS::Service
