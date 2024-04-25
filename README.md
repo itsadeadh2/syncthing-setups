@@ -1,13 +1,13 @@
 # Itsadead's Syncthing Setups
 
-[![Deploy to Amazon ECS](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml/badge.svg)](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml)
+[![Deploy to Amazon ECS](https://github.com/itsadeadh2/syncthing-setups/actions/workflows/deploy.yml/badge.svg)](https://github.com/itsadeadh2/syncthing-setups/actions/workflows/deploy.yml)
 
 Collection of [syncthing](https://syncthing.net/) setups that I use to sync my save states between my retro devices.
 ---
 
 ### Disclaimers
 - **Be sure you understand how syncthing works before using it with your devices, if you mess up you can lose data!**
-- I do not **maintain** or **own** any of the actual projects in here. This is just a repo with some instructions and placeholder configurations that I figured out myself in order to get a syncthing setup that works for my needs.
+- I do not **maintain** or **own** any of the actual projects in here. This is just a repo with some instructions and convenience scripts that I created to make the syncthing setup easier.
 
 ## Setups
 - [AWS](setups/aws/README.md)
