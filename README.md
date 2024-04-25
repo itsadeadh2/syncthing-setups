@@ -1,5 +1,7 @@
 # Itsadead's Syncthing Setups
 
+[![Deploy to Amazon ECS](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml/badge.svg)](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml)
+
 Collection of [syncthing](https://syncthing.net/) setups that I use to sync my save states between my retro devices.
 ---
 
