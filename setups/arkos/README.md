@@ -6,32 +6,12 @@ This is a setup guide for setting up syncthing for [ArkOS](https://github.com/ch
 - Arkos Installed on a compatible device
 - Wifi or ethernet connection properly configured and working on arkos ([see how](https://github.com/christianhaitian/arkos/wiki/Frequently-Asked-Questions---RG351V#q-how-do-i-configure-my-wifi-connection-in-arkos))
 
-
-### Steps
+### Install
 1. Connect to your device using SSH ([see how](https://github.com/christianhaitian/arkos/wiki/Frequently-Asked-Questions---RG351V#q-how-do-i-ssh-into-arkos))
-2. Install the syncthing linux distribution ([see how](https://apt.syncthing.net/))
-3. Create a systemd service for syncthing:
-    * Run `sudo nano /etc/systemd/system/syncthing.service`
-    * Paste the contents of [syncthing.service](syncthing.service) inside of the nano file 
-        * If you want to run syncthing gui on a different port, just edit the `--gui-address` param on the `ExecStart` line
-        * If you do not want to run the syncthing gui at all, replace `--gui-address` with `-no-browser`
-    * Press `CTRL+X` to exit nano, then `Y`, then press **Enter** to save the file
-4. Reload systemd: `sudo systemctl daemon-reload`
-5. Enable the syncthing service: `sudo systemctl enable syncthing`
-6. Start the syncthing service: `sudo systemctl start syncthing`
-7. Check syncthing service status: `systemctl status syncthing`
-
-If you did everything correctly, you should see:
-```bash
-● syncthing.service - Syncthing - Open Source Continuous File Synchronization fo
-   Loaded: loaded (/etc/systemd/system/syncthing.service; enabled; vendor preset
-   Active: active (running) since Wed 2024-04-24 22:34:44 EDT; 31min ago
-   Main PID: 697 (syncthing)
-   CGroup: /system.slice/syncthing.service
-           ├─697 /usr/bin/syncthing serve --gui-address=0.0.0.0:8443
-           └─746 /usr/bin/syncthing serve --gui-address=0.0.0.0:8443
-
-```
+2. Run installation script:   
+   ```bash
+   curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/arkos_install.sh | sudo bash
+   ```
 
 After that, syncthing gui should be available at your host machine under your arkos device ip followed by the port 8443.  
 E.g: `192.168.100.85:8443`  

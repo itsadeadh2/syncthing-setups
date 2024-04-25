@@ -6,13 +6,12 @@ This is a setup guide for setting up syncthing for [EmuELEC](https://github.com/
 - EmuELEC installed on a compatible device
 - Wifi or ethernet connection properly configured and working in EmuELEC
 
-### Steps
+### Install
 1. Connect to emuelec using SSH (user is `root`, password is `emuelec`)
-2. Install syncthing: `curl -sL https://gist.githubusercontent.com/itsadeadh2/06bc0d6d3c5a8f013941027ac5cdcf6b/raw/e517212485573d5e925038f94ca344de46003e03/install_syncthing_emuelec.sh | sh`
-    * This is a custom bash script that I've created. It is going to install syncthing and create a systemd service to make sure it initializes with the system.
-
-After that, syncthing gui should be available at your host machine under your arkos device ip followed by the port 8443.  
-E.g: `192.168.100.85:8443`  
+2. Run installation script:   
+   ```bash
+   curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/emuelec_install.sh | sudo bash
+   ```
 
 **And that's it, you now have a syncthing instance running on your device that is ready to included in other instances.**
 
