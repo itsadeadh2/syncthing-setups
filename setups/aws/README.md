@@ -1,7 +1,5 @@
 # AWS Setup #
 
-[![Deploy to Amazon ECS](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml/badge.svg)](https://github.com/itsadeadh2/syncthing-aws/actions/workflows/deploy.yml)
-
 This is a setup guide for setting up a syncthing instance to run as an [ECS FARGATE TASK](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html).
 
 
