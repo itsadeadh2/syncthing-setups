@@ -6,6 +6,14 @@ Parameters:
     Type: String
     Description: 'Name of an existing EC2 KeyPair for SSH access'
     Default: '0'
+  Memory:
+    Type: String
+    Description: 'The amount of memory you want your task to have'
+    Default: 0.5 GB
+  CPU:
+    Type: String
+    Description: 'The amount of vCPUs you want your task to have'
+    Default: .25 vCPU
 
 Resources:
 
@@ -50,8 +58,8 @@ Resources:
       TaskRoleArn: !GetAtt ECSTaskRole.Arn
       RequiresCompatibilities:
         - FARGATE
-      Cpu: .25 vCPU
-      Memory: 0.5 GB
+      Cpu: !Ref CPU
+      Memory: !Ref Memory
       ContainerDefinitions:
         - Name: !Sub "syncthing-${Revision}"
           Image: "linuxserver/syncthing:1.27.6"

@@ -4,9 +4,6 @@ on:
   push:
     branches: [ "main" ]
 
-env:
-  AWS_REGION: us-east-2
-
 permissions:
   contents: read
 
@@ -25,26 +22,26 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: $AWS_REGION
 
     - name: Deploy network      
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-network
-        template: templates/network.yml
+        template: setups/aws/templates/network.yml
         no-fail-on-empty-changeset: 1
 
     - name: Deploy ELB
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-elb
-        template: templates/elb.yml
+        template: setups/aws/templates/elb.yml
         no-fail-on-empty-changeset: 1
     
     - name: Deploy Syncthing      
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: syncthing-ecs
-        template: templates/syncthing.yml
+        template: setups/aws/templates/syncthing.yml
         parameter-overrides: "Revision=${{ github.run_id }}"
         no-fail-on-empty-changeset: 1
