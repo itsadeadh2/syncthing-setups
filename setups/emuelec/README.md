@@ -10,7 +10,7 @@ This is a setup guide for setting up syncthing for [EmuELEC](https://github.com/
 1. Connect to emuelec using SSH (user is `root`, password is `emuelec`)
 2. Run installation script:   
    ```bash
-   curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/emuelec_install.sh | sudo bash
+   curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/emuelec_install.sh | bash
    ```
 
 **And that's it, you now have a syncthing instance running on your device that is ready to included in other instances.**
