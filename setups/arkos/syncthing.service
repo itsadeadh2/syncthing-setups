@@ -1,0 +1,14 @@
+[Unit]
+Description=Syncthing - Open Source Continuous File Synchronization for %i
+After=network.target
+
+[Service]
+User=ark
+ExecStart=/usr/bin/syncthing serve --gui-address=0.0.0.0:8443
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=4
+
+[Install]
+WantedBy=multi-user.target
