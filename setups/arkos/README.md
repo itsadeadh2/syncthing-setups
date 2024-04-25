@@ -46,13 +46,15 @@ ArkOS [saves the states in the ROMS folder](-no-browser) so if you want to sync 
 2. Configure your folder like this: ![2](imgs/2.png)
     * You can change **Folder ID** and **Folder Label** as you'd like, but keep **Folder Path** as `/roms`
     * If you are using a two-card setup, then **Folder Path** should be **/roms2**
-3. Click on save an wait for the files to sync up
-4. Now, click on your newly created folder and then click on the **Edit** option
+3. Click on save
+4. Now, click on you newly created folder and:
+    * If you already have a lot of roms, you can click on **Pause** to stop the verification process to save you some time
+    * then click on the **Edit** option
 5. Go to the **Ignore Patterns** option and set the following: ![3](imgs/3.png)
     * This will make it so that any file that is not a `.state` file is ignored
 6. Click on **Save**
 
-Now your syncthing instance is wathing and syncing your states with any other instances that have this folder shared with them.
+Now your syncthing instance is watching and syncing your states with any other instances that have this folder shared with them.
 
 ### Useful resources
 - [Syncthing docs](https://docs.syncthing.net/)
