@@ -12,6 +12,16 @@ This is a setup guide for setting up syncthing for [ArkOS](https://github.com/ch
    ```bash
    curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/arkos_install.sh | sudo bash
    ```
+After that, run `systemctl status syncthing` to check if the installation completed successfully, if yes, you should see something like this:
+```bash
+● syncthing.service - Syncthing - Open Source Continuous File Synchronization fo
+   Loaded: loaded (/etc/systemd/system/syncthing.service; enabled; vendor preset
+   Active: active (running) since Thu 2024-04-25 13:14:41 EDT; 60ms ago
+ Main PID: 26544 (syncthing)
+   CGroup: /system.slice/syncthing.service
+           └─26544 /usr/bin/syncthing serve --gui-address=0.0.0.0:8443
+
+```
 
 After that, syncthing gui should be available at your host machine under your arkos device ip followed by the port 8443.  
 E.g: `192.168.100.85:8443`  

@@ -33,4 +33,3 @@ echo "Starting syncthing service..."
 sudo systemctl daemon-reload
 sudo systemctl enable syncthing
 sudo systemctl start syncthing
-

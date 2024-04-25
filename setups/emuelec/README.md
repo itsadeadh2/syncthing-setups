@@ -12,7 +12,16 @@ This is a setup guide for setting up syncthing for [EmuELEC](https://github.com/
    ```bash
    curl -fsSL https://github.com/itsadeadh2/syncthing-setups/raw/HEAD/bin/emuelec_install.sh | bash
    ```
+After that, run `systemctl status syncthing` to check if the installation completed successfully, if yes, you should see something like this:
+```bash
+● syncthing.service - Syncthing - Open Source Continuous File Synchronization fo
+   Loaded: loaded (/etc/systemd/system/syncthing.service; enabled; vendor preset
+   Active: active (running) since Thu 2024-04-25 13:14:41 EDT; 60ms ago
+ Main PID: 26544 (syncthing)
+   CGroup: /system.slice/syncthing.service
+           └─26544 /usr/bin/syncthing serve --gui-address=0.0.0.0:8443
 
+```
 **And that's it, you now have a syncthing instance running on your device that is ready to included in other instances.**
 
 ### Syncing states
