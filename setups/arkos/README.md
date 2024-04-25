@@ -15,7 +15,7 @@ This is a setup guide for setting up syncthing for [ArkOS](https://github.com/ch
     * Paste the contents of [syncthing.service](syncthing.service) inside of the nano file 
         * If you want to run syncthing gui on a different port, just edit the `--gui-address` param on the `ExecStart` line
         * If you do not want to run the syncthing gui at all, replace `--gui-address` with `-no-browser`
-    * Press `CTRL+X` to exit nano, then `Y` to save the file
+    * Press `CTRL+X` to exit nano, then `Y`, then press **Enter** to save the file
 4. Reload systemd: `sudo systemctl daemon-reload`
 5. Enable the syncthing service: `sudo systemctl enable syncthing`
 6. Start the syncthing service: `sudo systemctl start syncthing`
@@ -45,7 +45,7 @@ ArkOS [saves the states in the ROMS folder](-no-browser) so if you want to sync 
 1. Go to the syncthing gui and click on the **Add Folder** option
 2. Configure your folder like this: ![2](imgs/2.png)
     * You can change **Folder ID** and **Folder Label** as you'd like, but keep **Folder Path** as `/roms`
-    * If you are using a two-card setup, then **Folder Path** should be **TODO**
+    * If you are using a two-card setup, then **Folder Path** should be **/roms2**
 3. Click on save an wait for the files to sync up
 4. Now, click on your newly created folder and then click on the **Edit** option
 5. Go to the **Ignore Patterns** option and set the following: ![3](imgs/3.png)
