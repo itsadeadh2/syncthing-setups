@@ -40,7 +40,7 @@ E.g: `192.168.100.85:8443`
 ### Syncing states
 > This is my personal configuration, use it at your own risk.
 
-ArkOS [saves the states in the ROMS folder](-no-browser) so if you want to sync them, you have to create a syncthing folder that watches that. Here's how you'd set it up:
+ArkOS [saves the states in the ROMS folder](https://github.com/christianhaitian/arkos/wiki/Frequently-Asked-Questions---RG351V#q-where-are-game-saves-and-savestates-stored) so if you want to sync them, you have to create a syncthing folder that watches that. Here's how you'd set it up:
 
 1. Go to the syncthing gui and click on the **Add Folder** option
 2. Configure your folder like this: ![2](imgs/2.png)
