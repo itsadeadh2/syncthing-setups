@@ -1,1 +1,23 @@
-# syncthing-aws
+# Itsadead's Syncthing Setups
+
+Collection of [syncthing](https://syncthing.net/) setups that I use to sync my save states between my retro devices.
+---
+
+### Disclaimers
+- **Be sure you understand how syncthing works before using it with your devices, if you mess up you can lose data!**
+- I do not **maintain** or **own** any of the actual projects in here. This is just a repo with some instructions and placeholder configurations that I figured out myself in order to get a syncthing setup that works for my needs.
+
+## Setups
+- []()
+- [ArkOs](setups/arkos/README.md)
+- []()
+- []()
+- [Docker (locally)](https://hub.docker.com/r/linuxserver/syncthing)
+
+## Credits
+This project is just a configuration layer to make setting things up easy, if you want to see where the heavy lifting actually happens checkout these projects:
+- [Syncthing](https://syncthing.net/)
+- [linuxserver/syncthing](https://github.com/linuxserver/docker-syncthing)
+- [ArkOs](https://github.com/christianhaitian/arkos)
+- [Batocera]()
+- [EmuELEC]()
