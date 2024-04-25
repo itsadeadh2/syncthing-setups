@@ -10,6 +10,10 @@ Collection of [syncthing](https://syncthing.net/) setups that I use to sync my s
 - **Be sure you understand how syncthing works before using it with your devices, if you mess up you can lose data!**
 - I do not **maintain** or **own** any of the actual projects in here. This is just a repo with some instructions and convenience scripts that I created to make the syncthing setup easier.
 
+### What is syncthing?
+Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers in real time, safely protected from prying eyes. Your data is your data alone and you deserve to choose where it is stored, whether it is shared with some third party, and how it’s transmitted over the internet.   
+_(Taken from https://syncthing.net/)_
+
 ## Setups
 - [AWS](setups/aws/README.md)
 - [ArkOs](setups/arkos/README.md)
