@@ -50,3 +50,9 @@ Now your syncthing instance is watching and syncing your states with any other i
 - [Syncthing docs](https://docs.syncthing.net/)
 - [Patterns to ignore files in syncthing folders](https://docs.syncthing.net/v1.27.5/users/ignoring)
 
+### Quick Links
+- [HOME](/README.md)
+- [AWS Setup](/setups/aws/README.md)
+- [EmuELEC Setup](/setups/emuelec/README.md)
+- [Batocera Setup](/setups/batocera/README.md)
+

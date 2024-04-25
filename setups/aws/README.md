@@ -73,3 +73,8 @@ Go to your [AWS Cloudformation Console](https://console.aws.amazon.com/cloudform
 ### Useful resources
 - [Syncthing docs](https://docs.syncthing.net/)
 
+### Quick Links
+- [HOME](/README.md)
+- [ArkOS Setup](/setups/arkos/README.md)
+- [EmuELEC Setup](/setups/emuelec/README.md)
+- [Batocera Setup](/setups/batocera/README.md)

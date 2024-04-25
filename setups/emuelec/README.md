@@ -38,3 +38,9 @@ EmuELEC saves the states in the `/storage/roms/savestates` folder so if you want
     * This will make it so that any file that is not a `.state` file is ignored
     * We add a specific entry for `.png` files because emuelec does save them every time you save a state
 6. Click on **Save**
+
+### Quick Links
+- [HOME](/README.md)
+- [AWS Setup](/setups/aws/README.md)
+- [ArkOS Setup](/setups/arkos/README.md)
+- [Batocera Setup](/setups/batocera/README.md)
