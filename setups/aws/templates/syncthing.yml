@@ -48,6 +48,11 @@ Resources:
       Configuration:
         ExecuteCommandConfiguration:
           Logging: 'DEFAULT'
+      CapacityProviders:
+        - FARGATE_SPOT
+      DefaultCapacityProviderStrategy:
+        - CapacityProvider: FARGATE_SPOT
+          Weight: 1
 
   SyncthingTaskDefinition:
     Type: AWS::ECS::TaskDefinition
@@ -90,8 +95,10 @@ Resources:
       Cluster: !Ref ECSCluster
       ServiceName: "SyncthingService"
       TaskDefinition: !Ref SyncthingTaskDefinition
-      LaunchType: FARGATE
       DesiredCount: 1
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE_SPOT
+          Weight: 1
       EnableExecuteCommand: True
       NetworkConfiguration:
         AwsvpcConfiguration:
