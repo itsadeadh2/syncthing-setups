@@ -139,7 +139,7 @@ Resources:
                   - ecs:*
                   - ecr:*
                   - logs:*
-                  - ec2:*                  
+                  - ec2:*
                 Resource: "*"
               - Effect: Allow
                 Action:
@@ -153,6 +153,10 @@ Resources:
               - Effect: Allow
                 Action:
                   - elb:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - ssm:*
                 Resource: "*"
 
   ECSTaskRole:
