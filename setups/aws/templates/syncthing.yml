@@ -93,7 +93,7 @@ Resources:
     Type: AWS::ECS::Service
     Properties:
       Cluster: !Ref ECSCluster
-      ServiceName: "SyncthingService"
+      ServiceName: "SyncthingService1"
       TaskDefinition: !Ref SyncthingTaskDefinition
       DesiredCount: 1
       CapacityProviderStrategy:
