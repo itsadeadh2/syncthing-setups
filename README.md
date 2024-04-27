@@ -17,7 +17,7 @@ _(Taken from https://syncthing.net/)_
 ## Setups
 - [AWS](setups/aws/README.md)
 - [ArkOs](setups/arkos/README.md)
-- [Batocera](setups/batocera/README.md)
+- [Batocera](https://wiki.batocera.org/syncthing)
 - [EmuELEC](setups/emuelec/README.md)
 - [Docker (locally)](https://hub.docker.com/r/linuxserver/syncthing)
 
