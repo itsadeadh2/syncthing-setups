@@ -74,54 +74,6 @@ Resources:
       SubnetId: !Ref PublicSubnet2
       RouteTableId: !Ref PublicRouteTable
 
-  PrivateSubnet:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VPC
-      CidrBlock: "10.0.3.0/24"
-      AvailabilityZone: !Select [ 0, !GetAZs '' ]
-      Tags:
-        - Key: Name
-          Value: SyncthingPrivateSubnet
-
-  # NAT Gateway
-  NatGateway:
-    Type: AWS::EC2::NatGateway
-    Properties:
-      SubnetId: !Ref PublicSubnet1  # Placing NAT Gateway in Public Subnet 1
-      AllocationId: !GetAtt NatEIP.AllocationId
-    DependsOn: AttachGateway
-
-  # EIP for the NAT Gateway
-  NatEIP:
-    Type: AWS::EC2::EIP
-    Properties:
-      Domain: vpc
-
-  # Private Route Table
-  PrivateRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Name
-          Value: SyncthingPrivateRouteTable
-
-  # Route for Private Subnet to NAT Gateway
-  PrivateRoute:
-    Type: AWS::EC2::Route
-    Properties:
-      RouteTableId: !Ref PrivateRouteTable
-      DestinationCidrBlock: "0.0.0.0/0"
-      NatGatewayId: !Ref NatGateway
-
-  # Association of Private Subnet with Private Route Table
-  PrivateSubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref PrivateSubnet
-      RouteTableId: !Ref PrivateRouteTable
-
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -158,11 +110,6 @@ Outputs:
     Value: !Ref PublicSubnet2
     Export:
       Name: "public-subnet-2-export"
-
-  PrivateSubnet1:
-    Value: !Ref PrivateSubnet
-    Export:
-      Name: "private-subnet-1-export"
 
   SgExport:
     Value: !Ref SecurityGroup
