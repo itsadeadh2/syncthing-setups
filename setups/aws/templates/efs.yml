@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "AWS CloudFormation Template to deploy Syncthing on Fargate with EFS for persistent storage"
+
+Parameters:
+  Revision:
+    Type: String
+    Description: 'Name of an existing EC2 KeyPair for SSH access'
+    Default: '0'
+  Memory:
+    Type: String
+    Description: 'The amount of memory you want your task to have'
+    Default: 0.5 GB
+  CPU:
+    Type: String
+    Description: 'The amount of vCPUs you want your task to have'
+    Default: .25 vCPU
+
+Resources:
+
+  EFSFileSystem:
+    Type: AWS::EFS::FileSystem
+    DeletionPolicy: Retain
+    Properties:
+      PerformanceMode: generalPurpose
+      Encrypted: true
+      LifecyclePolicies:
+        - TransitionToIA: AFTER_30_DAYS
+
+  EFSMountTarget1:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EFSFileSystem
+      SubnetId: !ImportValue public-subnet-1-export
+      SecurityGroups:
+        - !ImportValue securitygroup-export
+
+  EFSMountTarget2:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EFSFileSystem
+      SubnetId: !ImportValue public-subnet-2-export
+      SecurityGroups:
+        - !ImportValue securitygroup-export
+
+Outputs:
+  PublicSubnet1:
+    Value: !Ref EFSFileSystem
+    Export:
+      Name: "efs-export"

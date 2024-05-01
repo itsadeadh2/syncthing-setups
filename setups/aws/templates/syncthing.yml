@@ -17,31 +17,6 @@ Parameters:
 
 Resources:
 
-  EFSFileSystem:
-    Type: AWS::EFS::FileSystem
-    DeletionPolicy: Retain
-    Properties:
-      PerformanceMode: generalPurpose
-      Encrypted: true
-      LifecyclePolicies:
-        - TransitionToIA: AFTER_30_DAYS
-
-  EFSMountTarget1:
-    Type: AWS::EFS::MountTarget
-    Properties:
-      FileSystemId: !Ref EFSFileSystem
-      SubnetId: !ImportValue public-subnet-1-export
-      SecurityGroups:
-        - !ImportValue securitygroup-export
-  
-  EFSMountTarget2:
-    Type: AWS::EFS::MountTarget
-    Properties:
-      FileSystemId: !Ref EFSFileSystem
-      SubnetId: !ImportValue public-subnet-2-export
-      SecurityGroups:
-        - !ImportValue securitygroup-export
-
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -87,7 +62,7 @@ Resources:
       Volumes:
         - Name: "SyncthingConfigVolume"
           EFSVolumeConfiguration:
-            FilesystemId: !Ref EFSFileSystem
+            FilesystemId: !ImportValue efs-export
             TransitEncryption: ENABLED
 
   ECSService:
