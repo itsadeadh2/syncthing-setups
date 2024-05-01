@@ -41,6 +41,14 @@ Resources:
       SecurityGroups:
         - !ImportValue securitygroup-export
 
+  EFSMountTarget3:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: !Ref EFSFileSystem
+      SubnetId: !ImportValue private-subnet-1-export
+      SecurityGroups:
+        - !ImportValue securitygroup-export
+
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
