@@ -106,7 +106,7 @@ Resources:
             - !ImportValue public-subnet-1-export
           SecurityGroups:
             - !ImportValue securitygroup-export
-          AssignPublicIp: ENABLED
+          AssignPublicIp: DISABLED
       DeploymentConfiguration:
         MaximumPercent: 100
         MinimumHealthyPercent: 0
