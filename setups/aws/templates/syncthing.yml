@@ -19,8 +19,8 @@ Resources:
 
   EFSFileSystem:
     Type: AWS::EFS::FileSystem
+    DeletionPolicy: Retain
     Properties:
-      DeletionPolicy: Retain
       PerformanceMode: generalPurpose
       Encrypted: true
       LifecyclePolicies:
