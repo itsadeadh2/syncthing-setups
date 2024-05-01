@@ -24,13 +24,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ vars.AWS_REGION }}
 
-    - name: Deploy ELB
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: syncthing-elb
-        template: setups/aws/templates/elb.yml
-        no-fail-on-empty-changeset: 1
-
     - name: Deploy network
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
@@ -38,6 +31,12 @@ jobs:
         template: setups/aws/templates/network.yml
         no-fail-on-empty-changeset: 1
 
+    - name: Deploy ELB
+      uses: aws-actions/aws-cloudformation-github-deploy@v1
+      with:
+        name: syncthing-elb
+        template: setups/aws/templates/elb.yml
+        no-fail-on-empty-changeset: 1
 
     - name: Deploy EFS
       uses: aws-actions/aws-cloudformation-github-deploy@v1
