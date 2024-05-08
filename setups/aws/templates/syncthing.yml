@@ -79,7 +79,7 @@ Resources:
       Cluster: !Ref ECSCluster
       ServiceName: "SyncthingService"
       TaskDefinition: !Ref SyncthingTaskDefinition
-      DesiredCount: 0
+      DesiredCount: 1
       CapacityProviderStrategy:
         - CapacityProvider: FARGATE_SPOT
           Weight: 1
