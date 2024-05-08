@@ -43,6 +43,23 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref ECSTargetGroup
 
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: "itsadeadh2.com"
+
+
+  # Create an Alias Record pointing to the ALB
+  DNSAliasRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z08193793842OMD6P2CI2
+      Name: "syncthing.itsadeadh2.com"  # Subdomain name
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt ApplicationLoadBalancer.DNSName
+        HostedZoneId: !GetAtt ApplicationLoadBalancer.CanonicalHostedZoneId
+
 Outputs:
   PublicSubnet1:
     Value: !Ref ECSTargetGroup
