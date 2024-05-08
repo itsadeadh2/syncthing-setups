@@ -17,11 +17,11 @@ Parameters:
   StartTime:
     Type: String
     Description: "Time to start the ECS service (Cron expression)"
-    default: cron(0 8 * * ? *)
+    Default: cron(0 8 * * ? *)
   StopTime:
     Type: String
     Description: "Time to stop the ECS service (Cron expression)"
-    default: cron(0 10 * * ? *)
+    Default: cron(0 10 * * ? *)
 
 Resources:
 
