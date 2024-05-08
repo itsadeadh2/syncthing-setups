@@ -43,11 +43,6 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref ECSTargetGroup
 
-  HostedZone:
-    Type: AWS::Route53::HostedZone
-    Properties:
-      Name: "itsadeadh2.com"
-
 
   # Create an Alias Record pointing to the ALB
   DNSAliasRecord:
@@ -58,7 +53,7 @@ Resources:
       Type: A
       AliasTarget:
         DNSName: !GetAtt ApplicationLoadBalancer.DNSName
-        HostedZoneId: !GetAtt ApplicationLoadBalancer.CanonicalHostedZoneId
+        HostedZoneId: Z3AADJGX6KTTL2
 
 Outputs:
   PublicSubnet1:
