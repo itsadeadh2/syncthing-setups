@@ -31,24 +31,24 @@ jobs:
         template: setups/aws/templates/network.yml
         no-fail-on-empty-changeset: 1
 
-    - name: Deploy ELB
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: syncthing-elb
-        template: setups/aws/templates/elb.yml
-        no-fail-on-empty-changeset: 1
+    #- name: Deploy ELB
+    #  uses: aws-actions/aws-cloudformation-github-deploy@v1
+    #  with:
+    #    name: syncthing-elb
+    #    template: setups/aws/templates/elb.yml
+    #    no-fail-on-empty-changeset: 1
 
-    - name: Deploy EFS
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: syncthing-efs
-        template: setups/aws/templates/efs.yml
-        no-fail-on-empty-changeset: 1
+    #- name: Deploy EFS
+    #  uses: aws-actions/aws-cloudformation-github-deploy@v1
+    #  with:
+    #    name: syncthing-efs
+    #    template: setups/aws/templates/efs.yml
+    #    no-fail-on-empty-changeset: 1
     
-    - name: Deploy Syncthing      
-      uses: aws-actions/aws-cloudformation-github-deploy@v1
-      with:
-        name: syncthing-ecs
-        template: setups/aws/templates/syncthing.yml
-        parameter-overrides: "Revision=${{ github.run_id }}"
-        no-fail-on-empty-changeset: 1
+    #- name: Deploy Syncthing
+    #  uses: aws-actions/aws-cloudformation-github-deploy@v1
+    #  with:
+    #    name: syncthing-ecs
+    #    template: setups/aws/templates/syncthing.yml
+    #    parameter-overrides: "Revision=${{ github.run_id }}"
+    #    no-fail-on-empty-changeset: 1
